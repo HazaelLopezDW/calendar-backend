@@ -6,6 +6,9 @@ const app = express();
 // Directorio publico
 app.use(express.static('public'));
 
+// Lectura y parseo de body
+app.use(express.json());
+
 // Rutas:
 // TODO: auth // Craer, login renew
 app.use('/api/auth', require('./routes/auth.routes'));
