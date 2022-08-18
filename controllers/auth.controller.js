@@ -32,7 +32,7 @@ const crearUsuario = async (req, res = response) => {
             ok: true,
             uid: usuario.id,
             name: usuario.name,
-            revalidarToken
+            token
         });
 
     } catch (error) {
@@ -89,10 +89,16 @@ const loginUsuario = async (req, res = response) => {
     }
 }
 
-const revalidarToken = (req, res = response) => {
+const revalidarToken = async (req, res = response) => {
+
+    const {uid, name} = req;
+
+    // Generar un nuevo JWT y retornarlo en esta petición
+    const token = await generarJWT(uid, name);
+
     res.json({
         ok: true,
-        msg: `revalidar Token`
+        token
     });
 }
 
