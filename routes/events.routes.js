@@ -1,8 +1,10 @@
 const { Router } = require('express');
+const { check } = require('express-validator');
 const { getEventos, 
         crearEvento, 
         actualizarEvento, 
         eliminarEvento } = require('../controllers/events.controller');
+const { validarCampos } = require('../middlewares/validar-campos');
 const { validarJWT } = require('../middlewares/validar-jwt');
         
 const router = Router();
@@ -22,7 +24,9 @@ router.get(
 router.post(
     '/', 
     [
-        validarJWT
+        validarJWT,
+        check('title','El titulo es requerido').not().isEmpty(),
+        validarCampos
     ],
     crearEvento
 );
