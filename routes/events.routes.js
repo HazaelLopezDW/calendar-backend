@@ -3,10 +3,10 @@ const { check } = require('express-validator');
 const { getEventos, 
         crearEvento, 
         actualizarEvento, 
-        eliminarEvento } = require('../controllers/events.controller');
-const { isDate } = require('../helpers/isDate');
-const { validarCampos } = require('../middlewares/validar-campos');
-const { validarJWT } = require('../middlewares/validar-jwt');
+        eliminarEvento } = require('../controllers');
+const { isDate } = require('../helpers');
+const { validarCampos,
+        validarJWT } = require('../middlewares'); 
         
 const router = Router();
 
