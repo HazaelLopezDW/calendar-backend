@@ -34,6 +34,9 @@ router.post(
 
 router.put(
     '/:id', 
+    [
+        check('id').isMongoId()
+    ],
     actualizarEvento
 );
 
