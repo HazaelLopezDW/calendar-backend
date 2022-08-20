@@ -18,8 +18,16 @@ const EventoSchema = Schema({
     },
     user: {
         type: Schema.Types.ObjectId,
-        ref: 'Usuario'
+        ref: 'Usuario',
+        required: [true, 'El usuario es obligatorio']
     }
 });
+
+//modificación de la serialización de Schema
+EventoSchema.method('toJSON', function(){
+    const { __v, _id, ...object } = this.toObject();
+    object.id = _id;
+    return object;
+})
 
 module.exports = model('Evento', EventoSchema);
