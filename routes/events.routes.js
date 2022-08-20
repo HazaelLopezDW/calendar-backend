@@ -11,13 +11,10 @@ const { validarJWT } = require('../middlewares/validar-jwt');
 const router = Router();
 
 // Todas tienen que pasar por la validación del JWT
-// router.use(validarJWT);
+router.use(validarJWT);
 
 router.get(
     '/', 
-    [
-        validarJWT
-    ],
     getEventos
 );
 
@@ -37,18 +34,12 @@ router.post(
 
 router.put(
     '/:id', 
-    [
-        validarJWT
-    ],
     actualizarEvento
 );
 
 
 router.delete(
     '/:id', 
-    [
-        validarJWT
-    ],
     eliminarEvento
 );
 
