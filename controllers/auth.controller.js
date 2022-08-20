@@ -49,7 +49,6 @@ const loginUsuario = async (req, res = response) => {
     const {email, password} = req.body;
 
     try {
-
         // Verificar si el emial ya esta registrado 
         const usuario = await Usuario.findOne({ email });
         
@@ -59,7 +58,7 @@ const loginUsuario = async (req, res = response) => {
                 msg: `El usuario no existe con ese email`
             })
         }
-
+        
         // Confirmar los password
         const validPassword = bcrypt.compareSync(password, usuario.password);
 
@@ -69,7 +68,6 @@ const loginUsuario = async (req, res = response) => {
                 msg: 'Password Incorrecto'
             })
         }
-
         // Generar JWt
         const token = await generarJWT(usuario.id, usuario.name);
 

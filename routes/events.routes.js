@@ -22,7 +22,6 @@ router.get(
 router.post(
     '/', 
     [
-        validarJWT,
         check('title','El titulo es requerido').not().isEmpty(),
         check('start','Fecha de inicio es obligatoria').custom(isDate),
         check('end','Fecha de finalización es obligatoria').custom(isDate),
@@ -40,11 +39,9 @@ router.put(
     actualizarEvento
 );
 
-
 router.delete(
     '/:id', 
     eliminarEvento
 );
-
 
 module.exports = router;
