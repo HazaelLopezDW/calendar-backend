@@ -4,6 +4,7 @@ const { getEventos,
         crearEvento, 
         actualizarEvento, 
         eliminarEvento } = require('../controllers/events.controller');
+const { isDate } = require('../helpers/isDate');
 const { validarCampos } = require('../middlewares/validar-campos');
 const { validarJWT } = require('../middlewares/validar-jwt');
         
@@ -26,6 +27,8 @@ router.post(
     [
         validarJWT,
         check('title','El titulo es requerido').not().isEmpty(),
+        check('start','Fecha de inicio es obligatoria').custom(isDate),
+        check('end','Fecha de finalización es obligatoria').custom(isDate),
         validarCampos
     ],
     crearEvento
